@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PasswordmanagerConfig(AppConfig):
+class Password_managerConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'passwordmanager'
+    name = 'password_manager'
