@@ -16,7 +16,9 @@ python3 manage.py runserver
 Then you can access the website at http://127.0.0.1:8000/ while the server is running.
 
 
-Users have to create an account or login to an existing account, by default there should be a superuser account whose username is admin and password is admin. To create a new superuser,
+Users have to create an account or login to an existing account, by default there should be a superuser account whose username is admin and password is admin (and username moi and 
+password 123, not a superuser, until I remember to delete it before commits). Usually you should not include the database file in commits but due to the nature of this project I have 
+decided to include it. To create a new superuser,
 run the command
 ```bash
 python manage.py createsuperuser

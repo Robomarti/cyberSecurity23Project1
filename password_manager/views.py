@@ -52,14 +52,12 @@ class PasswordDetails(LoginRequiredMixin, DetailView):
     template_name = "password_manager/password_details.html"
 
     #remove all other #-marks on this class
-    #def get(self, *arg, **kwargs):
-    #    self.object = self.get_object()
-    #    context = super().get_context_data(**kwargs)
-    #    if self.request.user == context["password"].user:
-    #        return super(PasswordDetails, self).get( *arg, **kwargs)
-    #    return redirect("password_list")
-        
-
+    def get(self, *arg, **kwargs):
+        self.object = self.get_object()
+        context = super().get_context_data(**kwargs)
+        if self.request.user == context["password"].user:
+            return super(PasswordDetails, self).get( *arg, **kwargs)
+        return redirect("password_list")
 
 class PasswordCreation(LoginRequiredMixin, CreateView):
     model = ListablePassword
@@ -73,11 +71,29 @@ class PasswordCreation(LoginRequiredMixin, CreateView):
 
 class PasswordUpdating(LoginRequiredMixin, UpdateView):
     model = ListablePassword
+    template_name = "password_manager/password_creation.html"
     fields = ["password", "web_address"]
     success_url = reverse_lazy("password_list")
+    context_object_name = "password_updating"
+
+    #remove all other #-marks on this class
+    #def get(self, *arg, **kwargs):
+    #    self.object = self.get_object()
+    #    context = super().get_context_data(**kwargs)
+    #    if self.request.user == context["password_updating"].user:
+    #        return super(PasswordUpdating, self).get( *arg, **kwargs)
+    #    return redirect("password_list")
 
 class PasswordDeletion(LoginRequiredMixin, DeleteView):
     model = ListablePassword
     template_name = "password_manager/password_confirm_delete.html"
-    context_object_name = "password"
+    context_object_name = "password_deletion"
     success_url = reverse_lazy("password_list")
+
+    #remove all other #-marks on this class
+    #def get(self, *arg, **kwargs):
+    #    self.object = self.get_object()
+    #    context = super().get_context_data(**kwargs)
+    #    if self.request.user == context["password_deletion"].user:
+    #        return super(PasswordDeletion, self).get( *arg, **kwargs)
+    #    return redirect("password_list")
