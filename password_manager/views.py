@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -8,6 +7,7 @@ from password_manager.models import ListablePassword
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -36,7 +36,7 @@ class AccountCreation(FormView):
             return redirect("password_list")
         return super(AccountCreation, self).get( *arg, **kwargs)
 
-class PasswordList(ListView):
+class PasswordList(LoginRequiredMixin, ListView):
     model = ListablePassword
     template_name = "password_manager/password_list.html"
     context_object_name = "password_list"
@@ -46,12 +46,22 @@ class PasswordList(ListView):
         context["password_list"] = context["password_list"].filter(user=self.request.user)
         return context
 
-class PasswordDetails(DetailView):
+class PasswordDetails(LoginRequiredMixin, DetailView):
     model = ListablePassword
     context_object_name = "password"
     template_name = "password_manager/password_details.html"
 
-class PasswordCreation(CreateView):
+    #remove all other #-marks on this class
+    #def get(self, *arg, **kwargs):
+    #    self.object = self.get_object()
+    #    context = super().get_context_data(**kwargs)
+    #    if self.request.user == context["password"].user:
+    #        return super(PasswordDetails, self).get( *arg, **kwargs)
+    #    return redirect("password_list")
+        
+
+
+class PasswordCreation(LoginRequiredMixin, CreateView):
     model = ListablePassword
     template_name = "password_manager/password_creation.html"
     fields = ["password", "web_address"]
@@ -61,12 +71,12 @@ class PasswordCreation(CreateView):
         form.instance.user = self.request.user
         return super(PasswordCreation, self).form_valid(form)
 
-class PasswordUpdating(UpdateView):
+class PasswordUpdating(LoginRequiredMixin, UpdateView):
     model = ListablePassword
     fields = ["password", "web_address"]
     success_url = reverse_lazy("password_list")
 
-class PasswordDeletion(DeleteView):
+class PasswordDeletion(LoginRequiredMixin, DeleteView):
     model = ListablePassword
     template_name = "password_manager/password_confirm_delete.html"
     context_object_name = "password"
