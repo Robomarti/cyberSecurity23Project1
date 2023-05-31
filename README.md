@@ -4,7 +4,7 @@ The following tutorials were used: https://docs.djangoproject.com/en/3.1/intro/t
 
 
 Installation guide:
-Clone the repository or download the latest release. Navigate to the folder where the manage.py file is and run the command 
+Ensure python 3.8+ is installed. Clone the repository or download the latest release. Navigate to the folder where the manage.py file is and run the command 
 ```bash
 python manage.py runserver
 ```
