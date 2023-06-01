@@ -23,29 +23,34 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-@rht&j93@nu!!82-74)oy1)t1b6&f*7(jlhe(9ywo&qwy2ihbc'
 
+#Remove the #-marks in front of the LOGGING dictionary and its values
+#LOGGING = {
+#    "version": 1,
+#    "disable_existing_loggers": False,
+#    "handlers": {
+#        "file": {
+#            "level": "DEBUG",
+#            "class": "logging.FileHandler",
+#            "filename": "password_manager/logs/debug.log",
+#        },
+#    },
+#    "loggers": {
+#        "django": {
+#            "handlers": ["file"],
+#            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+#            "propagate": True,
+#        },
+#    },
+#}
+
 # SECURITY WARNING: don't run with debug turned on in production!
+#Assign this as  False
 DEBUG = True
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "file": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": "password_manager/logs/debug.log",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["file"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-    },
-}
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    #'localhost',
+    #'127.0.0.1',
+]
 
 
 # Application definition
@@ -70,8 +75,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#DO NOT EDIT THESE
 #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 #SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+#SECURE_HSTS_SECONDS = 3
+#SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -140,7 +151,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-LOGIN_URL = "login" #
+LOGIN_URL = "login"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

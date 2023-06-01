@@ -52,12 +52,12 @@ class PasswordDetails(LoginRequiredMixin, DetailView):
     template_name = "password_manager/password_details.html"
 
     #remove all other #-marks on this class
-    def get(self, *arg, **kwargs):
-        self.object = self.get_object()
-        context = super().get_context_data(**kwargs)
-        if self.request.user == context["password"].user:
-            return super(PasswordDetails, self).get( *arg, **kwargs)
-        return redirect("password_list")
+    #def get(self, *arg, **kwargs):
+    #    self.object = self.get_object()
+    #    context = super().get_context_data(**kwargs)
+    #    if self.request.user == context["password"].user:
+    #        return super(PasswordDetails, self).get( *arg, **kwargs)
+    #    return redirect("password_list")
 
 class PasswordCreation(LoginRequiredMixin, CreateView):
     model = ListablePassword
