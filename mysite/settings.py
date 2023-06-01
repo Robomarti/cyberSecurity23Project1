@@ -44,14 +44,12 @@ SECRET_KEY = 'django-insecure-@rht&j93@nu!!82-74)oy1)t1b6&f*7(jlhe(9ywo&qwy2ihbc
 #}
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#Assign this as  False
+#Assign this as  False and uncomment the lines inside ALLOWED_HOSTS
 DEBUG = True
-
 ALLOWED_HOSTS = [
     #'localhost',
     #'127.0.0.1',
 ]
-
 
 # Application definition
 
@@ -75,12 +73,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#DO NOT EDIT THESE
+#DO NOT UNCOMMENT ANY OF THESE
 #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 #SECURE_SSL_REDIRECT = True
 #SESSION_COOKIE_SECURE = True
 #CSRF_COOKIE_SECURE = True
-#SECURE_HSTS_SECONDS = 3
+#SECURE_HSTS_SECONDS = 30
 #SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 #SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
